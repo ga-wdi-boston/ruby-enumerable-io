@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 require 'date'
+require_relative './age.rb'
+include Age
 #
 class Pet
   attr_reader :dob, :kind, :name
@@ -10,13 +12,4 @@ class Pet
     @name = pet_data[:name]
   end
 
-  def age
-    born_on = Date.parse(@dob)
-    today = Date.today
-    if born_on.month > today.month ||
-       born_on.month == today.month && born_on.day >= today.day
-      today <<= 12 # one year younger
-    end
-    today.year - born_on.year
-  end
 end
